@@ -75,13 +75,13 @@ def secondPageFakultetF1(message):
         if check_for_null[0][0] == 0:
             print("Table no contents")
             bot.send_message(message.chat.id, "Кезекте студент жоқ!")
+
             keyboard = types.ReplyKeyboardMarkup(True, False)
-            keyboard.add('Келесі')
             keyboard.add(homePage)
-            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - -', reply_markup=keyboard)
+            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
             bot.register_next_step_handler(send, secondPageFakultetF1)
+
         else:
-            """=============================USER ID===================================="""
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
             for get_user_id in cursor:
                 print(get_user_id[0])
