@@ -9,7 +9,7 @@ APP_URL = f'https://jenpuadminline.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
-conn = mysql.connector.connect(host="194.39.67.215", user="jelastic-5256352", password="O60BFWSCBLbn4yJJiWJ3",
+conn = mysql.connector.connect(host="194.39.67.203", user="jelastic-5256352", password="O60BFWSCBLbn4yJJiWJ3",
                                database='mydb', auth_plugin='mysql_native_password')
 cursor = conn.cursor()
 
