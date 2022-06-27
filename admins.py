@@ -74,9 +74,9 @@ def secondPageFakultetF1(message):
         print(check_for_null)
         if check_for_null[0][0] != 0:
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
-            for get_user_id in cursor:
-                print(get_user_id[0])
-                bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(get_user_id[0]))
+            get_user_id = cursor.fetchall()
+            print(get_user_id[0])
+            bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(get_user_id[0]))
             """==================USER_NAME CHECK FOR EXIST OR NONE======================="""
             cursor.execute("SELECT user_name FROM db_f_1 LIMIT 1")
             for check_name_null in cursor:
