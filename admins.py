@@ -74,9 +74,9 @@ def secondPageFakultetF1(message):
         print(check_for_null)
         if check_for_null[0][0] != 0:
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
-            for get_user_id in cursor:
-                print(get_user_id[0])
-                bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(get_user_id[0]))
+            get_user_id = cursor.fetchone()
+            print(get_user_id[0])
+            bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(get_user_id[0]))
             """==================USER_NAME CHECK FOR EXIST OR NONE======================="""
             cursor.execute("SELECT user_name FROM db_f_1 LIMIT 1")
             for check_name_null in cursor:
@@ -98,7 +98,7 @@ def secondPageFakultetF1(message):
             """=========================================================================="""
             """==================USER_ID================================================="""
 
-            
+
 
             api_key = "5497810512:AAFI8DhRu4apgVAdyeID2ppPJSRQ7Oq0UhE"
             bots = telebot.TeleBot(api_key)
