@@ -4,8 +4,8 @@ import mysql.connector
 import telebot
 from telebot import types
 
-TOKEN = '5443986931:AAGhWIQYisKpANV7kuhIezUW2r1ODThuLII'
-APP_URL = f'https://adminline.herokuapp.com/{TOKEN}'
+TOKEN = '5287178701:AAGqjOQohzho-G0wl48-zYNBCcRxW9JC_ic'
+APP_URL = f'https://jenpuadminline.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
