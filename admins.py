@@ -69,11 +69,11 @@ def third(message):
 
 def secondPageFakultetF1(message):
     if message.text == 'Келесі':
-        cursor.execute('''SELECT COUNT(*) FROM db_f_1''')
+        cursor.execute('''SELECT COUNT(*) FROM db_f_2''')
         check_for_null = cursor.fetchall()
         print(check_for_null)
         if check_for_null[0][0] != 0:
-            cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
+            cursor.execute("SELECT id FROM db_f_1 LIMIT 2")
             get_user_id = cursor.fetchall()
             print(get_user_id[0])
             bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(get_user_id[0]))
@@ -87,7 +87,7 @@ def secondPageFakultetF1(message):
                 else:
                     bot.send_message(message.chat.id, "Есімі:  " + str(check_name_null[0]))
             """==================USER_SUR_NAME CHECK FOR EXIST OR NONE===================="""
-            cursor.execute("SELECT user_surname FROM db_f_1 LIMIT 1")
+            cursor.execute("SELECT user_surname FROM db_f_1 LIMIT 2")
             for check_sname_null in cursor:
                 print(check_sname_null[0])
                 if check_sname_null[0] is None:
@@ -98,7 +98,7 @@ def secondPageFakultetF1(message):
             """=========================================================================="""
             """==================USER_ID================================================="""
 
-            cursor.execute("SELECT user_id FROM db_f_1 LIMIT 1")
+            cursor.execute("SELECT user_id FROM db_f_1 LIMIT 2")
             for results in cursor:
                 print(results[0])
                 # bot.send_message(message.chat.id, results[0])
@@ -131,7 +131,7 @@ def secondPageFakultetF1(message):
             keyboard.add('Келесі')
             keyboard.add(homePage)
             send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
-            bot.register_next_step_handler(send, first)
+            bot.register_next_step_handler(send, secondPageFakultetF1)
 
 
 
