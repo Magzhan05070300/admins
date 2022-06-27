@@ -119,7 +119,7 @@ def secondPageFakultetF1(message):
                 #bot.send_message(message.chat.id, results[0])
                 """==============API-KEY======================================"""
 
-                api_key = "5591676559:AAEU5XlHxGuz3fq0vdDkjCS9o3coT5o1JKg"
+                api_key = "5497810512:AAFI8DhRu4apgVAdyeID2ppPJSRQ7Oq0UhE"
                 bots = telebot.TeleBot(api_key)
 
                 bots.send_message(chat_id=results[0],
