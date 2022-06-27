@@ -90,6 +90,7 @@ def secondPageFakultetF1(message):
             """=============================USER ID===================================="""
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
             for get_user_id in cursor:
+                cursor.fetchall()
                 print(get_user_id[0])
                 bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(get_user_id[0]))
             """==================USER_NAME CHECK FOR EXIST OR NONE======================="""
