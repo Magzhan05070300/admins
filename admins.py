@@ -69,14 +69,14 @@ def third(message):
 
 def secondPageFakultetF1(message):
     if message.text == 'Келесі':
-        cursor.execute('''SELECT COUNT(*) FROM db_f_2''')
+        cursor.execute('''SELECT COUNT(*) FROM db_f_1''')
         check_for_null = cursor.fetchall()
         print(check_for_null)
         if check_for_null[0][0] != 0:
-            cursor.execute("SELECT id FROM db_f_1 LIMIT 2")
-            get_user_id = cursor.fetchall()
-            print(get_user_id[0])
-            bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(get_user_id[0]))
+            cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
+            for get_user_id in cursor:
+                print(get_user_id[0])
+                bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(get_user_id[0]))
             """==================USER_NAME CHECK FOR EXIST OR NONE======================="""
             cursor.execute("SELECT user_name FROM db_f_1 LIMIT 1")
             for check_name_null in cursor:
@@ -87,7 +87,7 @@ def secondPageFakultetF1(message):
                 else:
                     bot.send_message(message.chat.id, "Есімі:  " + str(check_name_null[0]))
             """==================USER_SUR_NAME CHECK FOR EXIST OR NONE===================="""
-            cursor.execute("SELECT user_surname FROM db_f_1 LIMIT 2")
+            cursor.execute("SELECT user_surname FROM db_f_1 LIMIT 1")
             for check_sname_null in cursor:
                 print(check_sname_null[0])
                 if check_sname_null[0] is None:
@@ -98,30 +98,26 @@ def secondPageFakultetF1(message):
             """=========================================================================="""
             """==================USER_ID================================================="""
 
-            cursor.execute("SELECT user_id FROM db_f_1 LIMIT 2")
-            for results in cursor:
-                print(results[0])
-                # bot.send_message(message.chat.id, results[0])
-                """==============API-KEY======================================"""
+            
 
-                api_key = "5497810512:AAFI8DhRu4apgVAdyeID2ppPJSRQ7Oq0UhE"
-                bots = telebot.TeleBot(api_key)
+            api_key = "5497810512:AAFI8DhRu4apgVAdyeID2ppPJSRQ7Oq0UhE"
+            bots = telebot.TeleBot(api_key)
 
-                bots.send_message(chat_id=results[0],
+            bots.send_message(chat_id=get_user_id[0],
                                   text='Сіздің кезегіңіз келді! '
                                        '\n101-кабинетте күтеміз!'
                                        '\n5 минутта келмесеңіз,'
                                        '\nкезегіңіз жоғалады!')
-                """==========================================================="""
+            """==========================================================="""
 
-                cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % results[0])
-                conn.commit()
+            cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % get_user_id[0])
+            conn.commit()
 
-                keyboard = types.ReplyKeyboardMarkup(True, False)
-                keyboard.add('Келесі')
-                keyboard.add(homePage)
-                send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - -', reply_markup=keyboard)
-                bot.register_next_step_handler(send, secondPageFakultetF1)
+            keyboard = types.ReplyKeyboardMarkup(True, False)
+            keyboard.add('Келесі')
+            keyboard.add(homePage)
+            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - -', reply_markup=keyboard)
+            bot.register_next_step_handler(send, secondPageFakultetF1)
 
         else:
             print("Table no contents")
