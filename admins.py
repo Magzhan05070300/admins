@@ -69,7 +69,7 @@ def third(message):
 
 def secondPageFakultetF1(message):
     if message.text == 'Келесі':
-        cursor.execute('''SELECT COUNT(*) FROM db_f_1''')
+        cursor.execute("SELECT COUNT(*) FROM db_f_1")
         check_for_null = cursor.fetchall()
         print(check_for_null)
         if check_for_null[0][0] != 0:
