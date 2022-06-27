@@ -123,10 +123,7 @@ def secondPageFakultetF1(message):
                 send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - -', reply_markup=keyboard)
                 bot.register_next_step_handler(send, secondPageFakultetF1)
 
-        cursor.execute("SELECT COUNT(*) FROM db_f_1")
-        check_for_null2 = cursor.fetchall()
-        print(check_for_null2)
-        if check_for_null2[0][0] == 0:
+        elif check_for_null[0][0] == 0:
             print("Table no contents")
             bot.send_message(message.chat.id, "Кезекте студент жоқ!")
 
