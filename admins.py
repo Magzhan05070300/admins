@@ -118,7 +118,10 @@ def secondPageFakultetF1(message):
                 print(results[0])
                 #bot.send_message(message.chat.id, results[0])
                 """==============API-KEY======================================"""
-
+                
+                cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % results[0])
+                conn.commit()
+                
                 api_key = "5497810512:AAFI8DhRu4apgVAdyeID2ppPJSRQ7Oq0UhE"
                 bots = telebot.TeleBot(api_key)
 
@@ -129,8 +132,7 @@ def secondPageFakultetF1(message):
                                        '\nкезегіңіз жоғалады!')
                 """==========================================================="""
 
-                cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % results[0])
-                conn.commit()
+
 
                 keyboard = types.ReplyKeyboardMarkup(True, False)
                 keyboard.add('Келесі')
