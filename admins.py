@@ -115,7 +115,7 @@ def secondPageFakultetF1(message):
                 """==========================================================="""
 
                 cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % results[0])
-                #conn.commit()
+                conn.commit()
 
                 keyboard = types.ReplyKeyboardMarkup(True, False)
                 keyboard.add('Келесі')
