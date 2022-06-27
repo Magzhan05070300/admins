@@ -116,9 +116,6 @@ def secondPageFakultetF1(message):
 
             """==============API-KEY======================================"""
 
-            cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % get_user_id[0])
-            conn.commit()
-
             api_key = "5497810512:AAFI8DhRu4apgVAdyeID2ppPJSRQ7Oq0UhE"
             bots = telebot.TeleBot(api_key)
 
@@ -128,6 +125,8 @@ def secondPageFakultetF1(message):
                                        '\n5 минутта келмесеңіз,'
                                        '\nкезегіңіз жоғалады!')
             """==========================================================="""
+            cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % get_user_id[0])
+            conn.commit()
 
 
 
