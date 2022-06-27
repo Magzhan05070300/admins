@@ -113,31 +113,28 @@ def secondPageFakultetF1(message):
             """=========================================================================="""
             """==================USER_ID================================================="""
 
-            cursor.execute("SELECT user_id FROM db_f_1 LIMIT 1")
-            for results in cursor:
-                print(results[0])
-                #bot.send_message(message.chat.id, results[0])
-                """==============API-KEY======================================"""
-                
-                cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % results[0])
-                conn.commit()
-                
-                api_key = "5497810512:AAFI8DhRu4apgVAdyeID2ppPJSRQ7Oq0UhE"
-                bots = telebot.TeleBot(api_key)
 
-                bots.send_message(chat_id=results[0],
-                                  text='Сіздің кезегіңіз келді! '
+            """==============API-KEY======================================"""
+
+            cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % get_user_id[0])
+            conn.commit()
+
+            api_key = "5497810512:AAFI8DhRu4apgVAdyeID2ppPJSRQ7Oq0UhE"
+            bots = telebot.TeleBot(api_key)
+
+            bots.send_message(chat_id=get_user_id[0],
+                                        text='Сіздің кезегіңіз келді! '
                                        '\n101-кабинетте күтеміз!'
                                        '\n5 минутта келмесеңіз,'
                                        '\nкезегіңіз жоғалады!')
-                """==========================================================="""
+            """==========================================================="""
 
 
 
-                keyboard = types.ReplyKeyboardMarkup(True, False)
-                keyboard.add('Келесі')
-                send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - -', reply_markup=keyboard)
-                bot.register_next_step_handler(send, secondPageFakultetF1)
+            keyboard = types.ReplyKeyboardMarkup(True, False)
+            keyboard.add('Келесі')
+            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - -', reply_markup=keyboard)
+            bot.register_next_step_handler(send, secondPageFakultetF1)
 
 
 @server.route('/' + TOKEN, methods=['POST'])
