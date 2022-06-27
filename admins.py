@@ -131,7 +131,7 @@ def secondPageFakultetF1(message):
             keyboard.add('Келесі')
             keyboard.add(homePage)
             send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
-            bot.register_next_step_handler(send, secondPageFakultetF1)
+            bot.register_next_step_handler(send, first)
 
 
 
