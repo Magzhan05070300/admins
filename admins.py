@@ -72,9 +72,9 @@ def third(message):
 def secondPageFakultetF1(message):
     if message.text == kelesi:
         cursor.execute("SELECT COUNT(*) FROM db_f_1")
-        check_for_null = cursor.fetchall()
-        print(check_for_null)
-        if not check_for_null:
+        row_count = cursor.rowcount
+        print("number of affected rows: {}".format(row_count))
+        if row_count == 0:
             print("Table no contents")
             bot.send_message(message.chat.id, "Кезекте студент жоқ!")
 
@@ -84,7 +84,7 @@ def secondPageFakultetF1(message):
             send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
             bot.register_next_step_handler(send, secondPageFakultetF1)
 
-        elif check_for_null:
+        else:
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
             for get_user_id in cursor:
                 print(get_user_id[0])
