@@ -87,6 +87,7 @@ def secondPageFakultetF1(message):
 
         else:
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
+            cursor.fetchall()
             for results in cursor:
                 print(results[0])
                 bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(results[0]))
