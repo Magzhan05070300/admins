@@ -11,7 +11,7 @@ server = Flask(__name__)
 
 conn = mysql.connector.connect(host="194.39.67.215", user="jelastic-5256352", password="O60BFWSCBLbn4yJJiWJ3",
                                database='mydb', auth_plugin='mysql_native_password')
-cursor = conn.cursor()
+cursor = conn.cursor(buffered=True)
 
 Fakultet1 = "Педагогика және психология институты"
 Fakultet2 = "Қазақ тілі және әлем тілдері институты"
@@ -72,18 +72,17 @@ def third(message):
 def secondPageFakultetF1(message):
     if message.text == kelesi:
 
-        rows_count = cursor.execute("SELECT * FROM db_f_1")
-        cursor.fetchall()
-        #check_for_null = cursor.rowcount
-        print(rows_count)
-        if rows_count == 0:
+        cursor.execute("SELECT * FROM db_f_1")
+        #cursor.fetchall()
+        check_for_null = cursor.rowcount
+        if check_for_null == 0:
             print("Table no contents")
             bot.send_message(message.chat.id, "Кезекте студент жоқ!")
 
             keyboard = types.ReplyKeyboardMarkup(True, False)
             keyboard.add(kelesi)
             keyboard.add(homePage)
-            send = bot.send_message(message.chat.id, 'Кезекте студент жоқ!- - ', reply_markup=keyboard)
+            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
             bot.register_next_step_handler(send, secondPageFakultetF1)
 
         else:
