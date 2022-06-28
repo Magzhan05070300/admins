@@ -72,29 +72,16 @@ def third(message):
 def secondPageFakultetF1(message):
     if message.text == kelesi:
 
-        cursor.execute("SELECT * FROM db_f_1")
-        #cursor.fetchall()
-        check_for_null = cursor.rowcount
-        if check_for_null == 0:
-            print("Table no contents")
-            bot.send_message(message.chat.id, "Кезекте студент жоқ!")
-
-            keyboard = types.ReplyKeyboardMarkup(True, False)
-            keyboard.add(kelesi)
-            keyboard.add(homePage)
-            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
-            bot.register_next_step_handler(send, secondPageFakultetF1)
-
-        else:
-            cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
-            for results in cursor:
-                print(results[0])
-                bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(results[0]))
-            keyboard = types.ReplyKeyboardMarkup(True, False)
-            keyboard.add(kelesi)
-            keyboard.add(homePage)
-            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
-            bot.register_next_step_handler(send, secondPageFakultetF1)
+        cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
+        for results in cursor:
+            print(results[0])
+            bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(results[0]))
+        keyboard = types.ReplyKeyboardMarkup(True, False)
+        keyboard.add(kelesi)
+        keyboard.add(homePage)
+        send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
+        bot.register_next_step_handler(send, secondPageFakultetF1)
+            
 
 
 
