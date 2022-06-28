@@ -83,7 +83,7 @@ def secondPageFakultetF1(message):
             keyboard = types.ReplyKeyboardMarkup(True, False)
             keyboard.add(kelesi)
             keyboard.add(homePage)
-            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
+            send = bot.send_message(message.chat.id, 'Кезекте студент жоқ!- - ', reply_markup=keyboard)
             bot.register_next_step_handler(send, secondPageFakultetF1)
 
         else:
