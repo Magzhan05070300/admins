@@ -20,7 +20,9 @@ Fakultet4 = "Жаратылыстану институты"
 Fakultet5 = "Әлеуметтік, гуманитарлық ғылымдар \nжәне өнер институты"
 Fakultet6 = "Университет құрамындағы кәсіптік \nбілім беру колледжі"
 Fakultet7 = "Магистратура және Докторантура"
+
 homePage = "Бастапқы бетке оралу"
+kelesi = "Келесі"
 
 
 @bot.message_handler(commands=['start'])
@@ -56,7 +58,7 @@ def third(message):
     # =================================FAKULTET_1========================================================
     if message.text == Fakultet1:
         keyboard = types.ReplyKeyboardMarkup(True, False)
-        keyboard.add('Келесі')
+        keyboard.add(kelesi)
         keyboard.add(homePage)
         send = bot.send_message(message.chat.id,
                                 'Келесі батырмасын басып, кезек қабылдаңыз!',
@@ -68,11 +70,21 @@ def third(message):
 
 
 def secondPageFakultetF1(message):
-    if message.text == 'Келесі':
+    if message.text == kelesi:
         cursor.execute("SELECT COUNT(*) FROM db_f_1")
-        check_for_null = cursor.fetchall()
+        check_for_null = cursor.fetchone()
         print(check_for_null)
-        if check_for_null[0][0] != 0:
+        if not check_for_null:
+            print("Table no contents")
+            bot.send_message(message.chat.id, "Кезекте студент жоқ!")
+
+            keyboard = types.ReplyKeyboardMarkup(True, False)
+            keyboard.add(kelesi)
+            keyboard.add(homePage)
+            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
+            bot.register_next_step_handler(send, secondPageFakultetF1)
+
+        else:
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
             for get_user_id in cursor:
                 print(get_user_id[0])
@@ -118,20 +130,10 @@ def secondPageFakultetF1(message):
                 conn.commit()
 
                 keyboard = types.ReplyKeyboardMarkup(True, False)
-                keyboard.add('Келесі')
+                keyboard.add(kelesi)
                 keyboard.add(homePage)
                 send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - -', reply_markup=keyboard)
                 bot.register_next_step_handler(send, secondPageFakultetF1)
-
-        elif check_for_null[0][0] == 0:
-            print("Table no contents")
-            bot.send_message(message.chat.id, "Кезекте студент жоқ!")
-
-            keyboard = types.ReplyKeyboardMarkup(True, False)
-            keyboard.add('Келесі')
-            keyboard.add(homePage)
-            send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
-            bot.register_next_step_handler(send, secondPageFakultetF1)
 
 
 
@@ -142,6 +144,7 @@ def secondPageFakultetF1(message):
                                 'Сәлеметсіз бе! \nБұл қабылдау комиссиясына кезекке қабылдау боты!\nМәзірді басып, '
                                 'өз факультетіңізді таңдаңыз!', reply_markup=keyboard)
         bot.register_next_step_handler(send, second)
+
 
 
 @server.route('/' + TOKEN, methods=['POST'])
