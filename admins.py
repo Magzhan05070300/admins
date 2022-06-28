@@ -73,6 +73,7 @@ def secondPageFakultetF1(message):
     if message.text == kelesi:
 
         cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
+        conn.commit()
         for results in cursor:
             print(results[0])
             bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(results[0]))
@@ -81,7 +82,7 @@ def secondPageFakultetF1(message):
         keyboard.add(homePage)
         send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - - - - - - ', reply_markup=keyboard)
         bot.register_next_step_handler(send, secondPageFakultetF1)
-            
+
 
 
 
