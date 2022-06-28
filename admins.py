@@ -73,6 +73,7 @@ def secondPageFakultetF1(message):
     if message.text == kelesi:
 
         cursor.execute("SELECT * FROM db_f_1")
+        conn.commit()
         cursor.fetchall()
         check_for_null = cursor.rowcount
         if check_for_null == 0:
@@ -87,6 +88,7 @@ def secondPageFakultetF1(message):
 
         else:
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
+            conn.commit()
             for results in cursor:
                 print(results[0])
                 bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(results[0]))
