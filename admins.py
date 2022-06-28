@@ -75,7 +75,7 @@ def secondPageFakultetF1(message):
         cursor.fetchall()
         row_count = cursor.rowcount
         print("number of affected rows: {}".format(row_count))
-        if row_count == 0:
+        if row_count is None:
             print("Table no contents")
             bot.send_message(message.chat.id, "Кезекте студент жоқ!")
 
