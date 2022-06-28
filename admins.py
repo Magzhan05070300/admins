@@ -73,9 +73,9 @@ def secondPageFakultetF1(message):
     if message.text == kelesi:
 
         cursor.execute("SELECT COUNT(*) FROM db_f_1")
-        check_for_null = cursor.fetchall()
+        check_for_null = cursor.rowcount
         print(check_for_null)
-        if check_for_null[0][0] == 0:
+        if check_for_null == 0:
             print("Table no contents")
             bot.send_message(message.chat.id, "Кезекте студент жоқ!")
 
@@ -87,7 +87,6 @@ def secondPageFakultetF1(message):
 
         else:
             cursor.execute("SELECT id FROM db_f_1 LIMIT 1")
-            cursor.fetchone()
             for results in cursor:
                 print(results[0])
                 bot.send_message(message.chat.id, "Кезек нөмірі:  " + str(results[0]))
