@@ -73,6 +73,7 @@ def secondPageFakultetF1(message):
     if message.text == kelesi:
 
         cursor.execute("SELECT COUNT(*) FROM db_f_1")
+        cursor.fetchall()
         check_for_null = cursor.rowcount
         print(check_for_null)
         if check_for_null == 0:
