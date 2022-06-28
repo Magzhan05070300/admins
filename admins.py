@@ -136,13 +136,6 @@ def secondPageFakultetF1(message):
                 cursor.execute("DELETE FROM db_f_1 WHERE user_id='%s';" % results[0])
                 conn.commit()
 
-                keyboard = types.ReplyKeyboardMarkup(True, False)
-                keyboard.add('Келесі')
-                keyboard.add(homePage)
-                send = bot.send_message(message.chat.id, '- - - - - - - - - - - - - - -', reply_markup=keyboard)
-                bot.register_next_step_handler(send, secondPageFakultetF1)
-                
-                
             keyboard = types.ReplyKeyboardMarkup(True, False)
             keyboard.add(kelesi)
             keyboard.add(homePage)
